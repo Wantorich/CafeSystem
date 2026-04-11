@@ -2,7 +2,6 @@ package com.cafesystem;
 
 import java.util.Collection;
 import lombok.Getter;
-import org.springframework.util.CollectionUtils;
 
 public class Order {
   private final Collection<OrderItem> orderItems;

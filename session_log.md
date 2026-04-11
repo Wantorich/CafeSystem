@@ -16,3 +16,18 @@
 - **다음 세션 확장 방향**:
   - 할인 정책 또는 메뉴 옵션 추가 → OCP/DIP 필요성 자연스럽게 등장 예정
   - 인터페이스 분리와 의존성 역전 체험
+
+## 2026-04-11 — 금액과 수량을 객체로 (Value Object)
+
+- **도메인**: Price, Quantity Value Object 도입 — Menu/OrderItem/Order에 적용
+- **적용/발견된 OOP 개념**:
+  - Value Object: 불변성(`final` + 새 객체 반환), 동등성(`equals`/`hashCode` 재정의), 의미 있는 행동
+  - 불변식(invariant)을 생성 시점에 보장 → 이후 재검증 불필요
+  - VO 인스턴스의 존재 자체가 유효성의 증명
+- **핵심 실수 또는 설계 결함**:
+  - `Price.add()`가 `money +=`로 내부 상태를 변경 → 가변 객체로 구현 (Value Object 아님)
+  - `Price.add()`의 반환 타입을 `int`로 설계 → 결과를 다시 Price로 다룰 수 없음
+  - `Quantity.isZero()`, `Quantity.isNegative()` 등 절대 실행되지 않는 dead code 작성
+  - `equals`/`hashCode` 미재정의 (초기)
+- **다음 세션 확장 방향**:
+  - 주문 항목 목록을 일급 컬렉션(First-Class Collection)으로 표현
