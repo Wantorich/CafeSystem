@@ -1,10 +1,11 @@
 package com.cafesystem;
 
+
 import lombok.Getter;
 
+@Getter
 public class Menu {
   private final String name;
-  @Getter
   private final Price price;
 
   private Menu(String name, Price price) {

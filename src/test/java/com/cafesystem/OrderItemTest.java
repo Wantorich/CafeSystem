@@ -17,6 +17,6 @@ public class OrderItemTest {
     Menu menu = Menu.createMenu("카페라떼", Price.of(4500));
     OrderItem orderItem = OrderItem.createOrderItem(menu, Quantity.of(3));
 
-    assertThat(orderItem.getSubTotal()).isEqualTo(13500);
+    assertThat(orderItem.calculateSubTotal()).isEqualTo(Price.of(13500));
   }
 }

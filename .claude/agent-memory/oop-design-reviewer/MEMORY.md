@@ -1,0 +1,2 @@
+- [효재 프로필](user_hyojae.md) — Java OOP 학습자, session_01 기준 수준 및 습관 정리
+- [세션 이력 및 설계 결정 누적](project_session_history.md) — 각 세션 패턴 적용/실수/미경험 개념 추적

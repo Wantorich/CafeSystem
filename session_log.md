@@ -31,3 +31,18 @@
   - `equals`/`hashCode` 미재정의 (초기)
 - **다음 세션 확장 방향**:
   - 주문 항목 목록을 일급 컬렉션(First-Class Collection)으로 표현
+
+## 2026-04-11 — 주문 항목 목록을 객체로 (일급 컬렉션)
+
+- **도메인**: OrderItemList 일급 컬렉션 도입 — Order 단순화
+- **적용/발견된 OOP 개념**:
+  - 일급 컬렉션: 컬렉션을 단일 필드로 감싸고, 관련 책임을 한 곳에 모음
+  - 방어적 복사(`List.copyOf()`) vs `unmodifiableList()` 차이 — 완전한 복사본으로 불변성 보장
+  - 책임 이동: 총액 계산이 `Order`에서 `OrderItemList`로 이동 → Order 단순화
+  - 불변식 보장 후 재검증 불필요 — orElseThrow() dead code 인식 후 mapToInt().sum()으로 개선
+- **핵심 실수 또는 설계 결함**:
+  - `orElseThrow()` 작성 — 불변식이 보장된 상황에서의 dead code (session_02 패턴 반복)
+  - `Order.createOrder(null)` NPE 미처리 — `Objects.requireNonNull()` 누락
+  - `Menu.name` 3회 연속 외부 접근 불가 방치
+- **다음 세션 확장 방향**:
+  - 음료 종류 추가 → 조건문 폭발 유도 → OCP/다형성으로 대체

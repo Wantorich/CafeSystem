@@ -1,12 +1,8 @@
 package com.cafesystem;
 
-import lombok.Getter;
-
 public class OrderItem {
   private final Menu menu;
   private final Quantity quantity;
-  @Getter
-  private int subTotal;
 
   private OrderItem(Menu menu, Quantity quantity) {
     this.menu = menu;
@@ -14,13 +10,11 @@ public class OrderItem {
   }
 
   public static OrderItem createOrderItem(Menu menu, Quantity quantity) {
-    OrderItem orderItem = new OrderItem(menu, quantity);
-    orderItem.calculateSubTotal();
-    return orderItem;
+    return new OrderItem(menu, quantity);
   }
 
-  private void calculateSubTotal() {
+  public Price calculateSubTotal() {
     Price menuPrice = menu.getPrice();
-    subTotal = quantity.times(menuPrice);
+    return quantity.times(menuPrice);
   }
 }

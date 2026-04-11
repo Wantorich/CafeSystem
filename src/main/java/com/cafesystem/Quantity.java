@@ -13,7 +13,7 @@ public class Quantity {
     return new Quantity(amount);
   }
 
-  public int times(Price price) {
-    return amount * price.getMoney();
+  public Price times(Price price) {
+    return Price.of(amount * price.getMoney());
   }
 }

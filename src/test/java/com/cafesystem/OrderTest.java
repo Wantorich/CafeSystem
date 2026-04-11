@@ -1,9 +1,9 @@
 package com.cafesystem;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
@@ -15,10 +15,10 @@ public class OrderTest {
     OrderItem orderItem = OrderItem.createOrderItem(menu, Quantity.of(3));
     List<OrderItem> orderItems = new ArrayList<>();
     orderItems.add(orderItem);
-    Order order = Order.createOrder(orderItems);
-    order.calculateTotalPrice();
+    OrderItemList orderItemList = OrderItemList.of(orderItems);
+    Order order = Order.createOrder(orderItemList);
 
-    assertThat(order.getTotalPrice()).isEqualTo(13500);
+    assertThat(order.calculateTotalPrice()).isEqualTo(Price.of(13500));
   }
 
   @Test
@@ -30,16 +30,15 @@ public class OrderTest {
     List<OrderItem> orderItems = new ArrayList<>();
     orderItems.add(orderItem);
     orderItems.add(orderItem2);
-    Order order = Order.createOrder(orderItems);
-    order.calculateTotalPrice();
+    OrderItemList orderItemList = OrderItemList.of(orderItems);
+    Order order = Order.createOrder(orderItemList);
 
-    assertThat(order.getTotalPrice()).isEqualTo(18000);
+    assertThat(order.calculateTotalPrice()).isEqualTo(Price.of(18000));
   }
 
   @Test
-  void 주문항목_없이_주문을_생성할수_없다() {
-    List<OrderItem> emptyList = Collections.emptyList();
-    assertThatThrownBy(() -> Order.createOrder(emptyList))
-      .isInstanceOf(IllegalArgumentException.class);
+  void 주문항목리스트에_null이_전달되면_주문을_생성할수_없다() {
+    assertThatThrownBy(() -> Order.createOrder(null))
+        .isInstanceOf(NullPointerException.class);
   }
 }
