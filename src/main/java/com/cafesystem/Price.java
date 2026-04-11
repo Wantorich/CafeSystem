@@ -19,6 +19,6 @@ public class Price {
   }
 
   public Price add(Price price) {
-    return new Price(this.money + price.getMoney());
+    return Price.of(this.money + price.getMoney());
   }
 }
