@@ -14,7 +14,7 @@ public class OrderItemTest {
 
   @Test
   void 가격이_4500원인_메뉴를_3개_주문하면_소계는_13500원이다() {
-    Menu menu = Menu.createMenu("카페라떼", Price.of(4500));
+    Menu menu = Menu.createMenu("카페라떼", Price.of(4500),  Category.COFFEE);
     OrderItem orderItem = OrderItem.createOrderItem(menu, Quantity.of(3));
 
     assertThat(orderItem.calculateSubTotal()).isEqualTo(Price.of(13500));

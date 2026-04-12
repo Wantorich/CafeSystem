@@ -26,8 +26,8 @@ class OrderItemListTest {
 
   @Test
   void 아메리카노2잔_치즈케이크1개_주문총금액은_15500원이다() {
-    OrderItem americano = OrderItem.createOrderItem(Menu.createMenu("아메리카노", Price.of(4500)), Quantity.of(2));
-    OrderItem cheeseCake = OrderItem.createOrderItem(Menu.createMenu("치즈케이크", Price.of(6500)), Quantity.of(1));
+    OrderItem americano = OrderItem.createOrderItem(Menu.createMenu("아메리카노", Price.of(4500), Category.COFFEE), Quantity.of(2));
+    OrderItem cheeseCake = OrderItem.createOrderItem(Menu.createMenu("치즈케이크", Price.of(6500), Category.DESSERT), Quantity.of(1));
     Collection<OrderItem> orderItems = new ArrayList<>();
     orderItems.add(americano);
     orderItems.add(cheeseCake);
@@ -39,13 +39,13 @@ class OrderItemListTest {
 
   @Test
   void 주문항목리스트는_외부에서_변경할수_없다() {
-    OrderItem americano = OrderItem.createOrderItem(Menu.createMenu("아메리카노", Price.of(4500)), Quantity.of(2));
+    OrderItem americano = OrderItem.createOrderItem(Menu.createMenu("아메리카노", Price.of(4500), Category.COFFEE), Quantity.of(2));
     Collection<OrderItem> orderItems = new ArrayList<>();
     orderItems.add(americano);
 
     OrderItemList orderItemList = OrderItemList.of(orderItems);
 
-    OrderItem cheeseCake = OrderItem.createOrderItem(Menu.createMenu("치즈케이크", Price.of(6500)), Quantity.of(1));
+    OrderItem cheeseCake = OrderItem.createOrderItem(Menu.createMenu("치즈케이크", Price.of(6500), Category.DESSERT), Quantity.of(1));
     orderItems.add(cheeseCake);
 
     Assertions.assertThat(orderItemList.sum()).isEqualTo(Price.of(9000));

@@ -11,7 +11,7 @@ public class OrderTest {
 
   @Test
   void 단일_메뉴_주문에_성공한다() {
-    Menu menu = Menu.createMenu("아메리카노", Price.of(4500));
+    Menu menu = Menu.createMenu("아메리카노", Price.of(4500),  Category.COFFEE);
     OrderItem orderItem = OrderItem.createOrderItem(menu, Quantity.of(3));
     List<OrderItem> orderItems = new ArrayList<>();
     orderItems.add(orderItem);
@@ -23,8 +23,8 @@ public class OrderTest {
 
   @Test
   void 복수_메뉴_주문에_성공한다() {
-    Menu cafeLatte = Menu.createMenu("카페라떼", Price.of(5000));
-    Menu cheeseCake = Menu.createMenu("치즈케이크", Price.of(6500));
+    Menu cafeLatte = Menu.createMenu("카페라떼", Price.of(5000), Category.COFFEE);
+    Menu cheeseCake = Menu.createMenu("치즈케이크", Price.of(6500), Category.DESSERT);
     OrderItem orderItem = OrderItem.createOrderItem(cafeLatte, Quantity.of(1));
     OrderItem orderItem2 = OrderItem.createOrderItem(cheeseCake, Quantity.of(2));
     List<OrderItem> orderItems = new ArrayList<>();

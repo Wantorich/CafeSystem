@@ -104,3 +104,38 @@ type: project
 **다음 세션 확장 방향**:
 - 할인 정책 추가 (Strategy 패턴 도입 기회) — Price, OrderItemList가 정비된 상태이므로 진행 가능
 - OrderItemList 인터페이스 추출 여부 논의 (OCP/DIP 도입 시점)
+
+---
+
+## session_04 — OCP와 Enum 다형성 (2026-04-08)
+
+**도메인**: Category (신규 Enum), Menu (확장)
+
+**적용된 패턴**:
+- Rich Enum: Category가 prefix(설명 문구)와 preparationTime(준비 시간) 상태를 보유하고 getDescription(), getPreparationTime() 행동을 직접 구현
+- OCP 달성: 새 카테고리(DESSERT) 추가 시 기존 코드 수정 없이 Enum 상수 1줄 추가만으로 완성
+
+**session_03 대비 개선된 사항**:
+- Menu.name @Getter 누락 문제 해결 — session_01~03 3회 연속 지적 후 이번에 클래스 레벨 @Getter로 해결
+- OrderItemList.sum()에서 orElseThrow() dead code 제거 — mapToInt().sum()으로 단순화
+- Order.createOrder(null) null 방어 추가 (Objects.requireNonNull)
+
+**발견된 설계 결함**:
+1. 요구사항 명세와 테스트 불일치 — 시나리오 기대 형식 `"에스프레소 기반 음료: 아메리카노"`와 실제 구현 `"에스프레소 기반 음료 : 아메리카노"` 불일치. 테스트가 요구사항이 아닌 구현을 복사한 형태
+2. Category.getDescription()이 렌더링 포맷(`"%s : %s"`)을 Enum 안에 직접 보유 — 출력 채널이 달라지면 Enum을 수정해야 하는 SRP 위반 가능성
+3. 시나리오 3(신규 카테고리 추가 검증)에 대한 명시적 테스트 없음 — DESSERT를 사용하는 OrderTest가 간접 증거가 될 뿐
+
+**OOP 개념 습득 여부**:
+- OCP 개념을 구조로 실현함 (if-else를 타입 선언 시점으로 이동하는 발상)
+- Rich Enum이 유효한 경우(데이터 차이)와 한계(알고리즘 차이)를 구분하지는 못한 상태
+- 테스트가 요구사항을 검증해야 한다는 원칙 아직 내재화 미흡
+
+**아직 경험하지 못한 OOP 개념**:
+- Strategy 패턴 (알고리즘 교체 가능성이 Rich Enum의 한계를 넘을 때)
+- 인터페이스 추상화 (Repository, Service 계층)
+- LSP/ISP
+- Decorator 패턴
+
+**다음 세션 확장 방향**:
+- Strategy 패턴: 할인 정책 추가 — Rich Enum이 처리 못하는 알고리즘 분기 상황 도입
+- Category를 인터페이스로 추출하는 시점 탐색 (DIP 도입 맥락)
