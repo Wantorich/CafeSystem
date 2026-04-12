@@ -31,3 +31,4 @@ out/
 
 ### Claude ###
 .claude/agent-memory/
+session_log.md
