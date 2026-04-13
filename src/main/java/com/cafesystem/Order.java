@@ -1,20 +1,31 @@
 package com.cafesystem;
 
+import com.cafesystem.discount.NoDiscount;
+import com.cafesystem.discount.DiscountPolicy;
 import java.util.Objects;
 
 public class Order {
   private final OrderItemList orderItemList;
+  private final DiscountPolicy discountPolicy;
 
-  private Order(OrderItemList orderItemList) {
+  private Order(OrderItemList orderItemList, DiscountPolicy discount) {
     this.orderItemList = orderItemList;
+    this.discountPolicy = discount;
   }
 
   public static Order createOrder(OrderItemList orderItemList) {
+    return createOrder(orderItemList, new NoDiscount());
+  }
+
+  public static Order createOrder(OrderItemList orderItemList, DiscountPolicy discountPolicy) {
     Objects.requireNonNull(orderItemList, "orderItemList cannot be null");
-    return new Order(orderItemList);
+    if (Objects.isNull(discountPolicy))
+      return new Order(orderItemList, new NoDiscount());
+    return new Order(orderItemList, discountPolicy);
   }
 
   public Price calculateTotalPrice() {
-    return orderItemList.sum();
+    Price origin = orderItemList.sum();
+    return discountPolicy.apply(origin);
   }
 }
