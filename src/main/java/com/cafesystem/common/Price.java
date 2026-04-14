@@ -1,4 +1,4 @@
-package com.cafesystem;
+package com.cafesystem.common;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

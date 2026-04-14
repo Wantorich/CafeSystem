@@ -1,4 +1,8 @@
-package com.cafesystem;
+package com.cafesystem.order;
+
+import com.cafesystem.common.Price;
+import com.cafesystem.common.Quantity;
+import com.cafesystem.menu.Menu;
 
 public class OrderItem {
   private final Menu menu;

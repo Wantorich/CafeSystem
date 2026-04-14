@@ -1,5 +1,6 @@
-package com.cafesystem;
+package com.cafesystem.menu;
 
+import com.cafesystem.common.Price;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 

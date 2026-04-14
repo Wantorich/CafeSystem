@@ -1,7 +1,8 @@
-package com.cafesystem;
+package com.cafesystem.order;
 
-import com.cafesystem.discount.NoDiscount;
+import com.cafesystem.common.Price;
 import com.cafesystem.discount.DiscountPolicy;
+import com.cafesystem.discount.NoDiscount;
 import java.util.Objects;
 
 public class Order {

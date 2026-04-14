@@ -1,4 +1,4 @@
-package com.cafesystem;
+package com.cafesystem.common;
 
 public class Quantity {
 

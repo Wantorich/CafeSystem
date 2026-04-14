@@ -1,5 +1,6 @@
-package com.cafesystem;
+package com.cafesystem.order;
 
+import com.cafesystem.common.Price;
 import java.util.Collection;
 import java.util.List;
 

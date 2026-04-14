@@ -1,5 +1,7 @@
-package com.cafesystem;
+package com.cafesystem.order;
 
+import com.cafesystem.common.Price;
+import com.cafesystem.payment.PaymentMethod;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

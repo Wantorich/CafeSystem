@@ -1,7 +1,11 @@
-package com.cafesystem;
+package com.cafesystem.order;
 
 import static org.assertj.core.api.Assertions.*;
 
+import com.cafesystem.common.Price;
+import com.cafesystem.common.Quantity;
+import com.cafesystem.menu.Category;
+import com.cafesystem.menu.Menu;
 import org.junit.jupiter.api.Test;
 
 public class OrderItemTest {

@@ -1,10 +1,14 @@
-package com.cafesystem;
+package com.cafesystem.order;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import com.cafesystem.common.Price;
+import com.cafesystem.common.Quantity;
 import com.cafesystem.discount.CouponDiscount;
 import com.cafesystem.discount.MembershipDiscount;
+import com.cafesystem.menu.Category;
+import com.cafesystem.menu.Menu;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.Test;

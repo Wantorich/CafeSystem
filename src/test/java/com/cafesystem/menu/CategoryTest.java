@@ -1,4 +1,4 @@
-package com.cafesystem;
+package com.cafesystem.menu;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

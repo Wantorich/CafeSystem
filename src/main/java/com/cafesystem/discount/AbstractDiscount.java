@@ -1,6 +1,6 @@
 package com.cafesystem.discount;
 
-import com.cafesystem.Price;
+import com.cafesystem.common.Price;
 
 public abstract class AbstractDiscount implements DiscountPolicy {
   private static final int MIN_PRICE = 1;

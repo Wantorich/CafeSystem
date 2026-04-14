@@ -1,9 +1,15 @@
-package com.cafesystem;
+package com.cafesystem.order;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.cafesystem.common.Price;
+import com.cafesystem.common.Quantity;
 import com.cafesystem.discount.MembershipDiscount;
+import com.cafesystem.menu.Category;
+import com.cafesystem.menu.Menu;
+import com.cafesystem.payment.CardPaymentMethod;
 import com.cafesystem.payment.FakePaymentMethod;
+import com.cafesystem.payment.KakaoPaymentMethod;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

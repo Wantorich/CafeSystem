@@ -1,4 +1,4 @@
-package com.cafesystem;
+package com.cafesystem.common;
 
 import static org.junit.jupiter.api.Assertions.*;
 

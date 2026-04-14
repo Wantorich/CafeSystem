@@ -1,7 +1,7 @@
 package com.cafesystem.payment;
 
-import com.cafesystem.PaymentMethod;
-import com.cafesystem.Price;
+import com.cafesystem.common.Price;
+import com.cafesystem.payment.PaymentMethod;
 
 public class FakePaymentMethod implements PaymentMethod {
   private boolean isPaid;

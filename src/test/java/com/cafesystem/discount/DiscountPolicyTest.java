@@ -1,7 +1,8 @@
-package com.cafesystem;
+package com.cafesystem.discount;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.cafesystem.common.Price;
 import com.cafesystem.discount.CouponDiscount;
 import com.cafesystem.discount.NoDiscount;
 import com.cafesystem.discount.DiscountPolicy;

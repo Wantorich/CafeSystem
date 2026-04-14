@@ -1,4 +1,4 @@
-package com.cafesystem;
+package com.cafesystem.common;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;

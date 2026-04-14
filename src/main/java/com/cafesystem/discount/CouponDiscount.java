@@ -1,6 +1,6 @@
 package com.cafesystem.discount;
 
-import com.cafesystem.Price;
+import com.cafesystem.common.Price;
 import java.math.BigDecimal;
 
 public class CouponDiscount extends AbstractDiscount {

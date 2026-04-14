@@ -1,6 +1,7 @@
-package com.cafesystem;
+package com.cafesystem.menu;
 
 
+import com.cafesystem.common.Price;
 import java.util.Objects;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

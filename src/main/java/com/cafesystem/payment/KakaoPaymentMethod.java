@@ -1,4 +1,6 @@
-package com.cafesystem;
+package com.cafesystem.payment;
+
+import com.cafesystem.common.Price;
 
 public class KakaoPaymentMethod implements PaymentMethod {
 
