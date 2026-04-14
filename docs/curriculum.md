@@ -46,3 +46,4 @@
 | 04 | 2026-04-12 | 완료 | OCP, Enum 다형성, Enum vs 인터페이스 선택 기준 |
 | 05 | 2026-04-13 | 완료 | Strategy 패턴, 인터페이스 추상화, 할인 정책 분리 |
 | 06 | 2026-04-14 | 완료 | Template Method 패턴, final 흐름 고정, 공통 제약 통합 |
+| 07 | 2026-04-15 | 완료 | DIP, Constructor Injection, Test Double(Fake), Package by Feature |
