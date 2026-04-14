@@ -41,4 +41,10 @@ class DiscountPolicyTest {
     DiscountPolicy discount = new SeasonDiscount();
     assertThat(discount.apply(Price.of(10000))).isEqualTo(Price.of(8500));
   }
+
+  @Test
+  void 총액_900원에_쿠폰_할인_적용시_최종금액은_1원이다() {
+    DiscountPolicy discount = new CouponDiscount();
+    assertThat(discount.apply(Price.of(900))).isEqualTo(Price.of(1));
+  }
 }
