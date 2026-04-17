@@ -105,3 +105,22 @@
   - (세션 중 설계·구현 진행, 리뷰 생략하고 세션 종료)
 - **다음 세션 확장 방향**:
   - Factory / Abstract Factory — 음료·사이즈·옵션 조합 생성
+
+## 2026-04-17 — 음료 생성 표준화 (Registry + Template Method)
+
+- **도메인**: Drink / DrinkType / Temperature / DrinkRecipe / AbstractDrinkRecipe / AmericanoRecipe / CafeLatteRecipe / DrinkRecipeRegistry
+- **적용/발견된 OOP 개념**:
+  - Factory Method 패턴: `DrinkRecipe` 인터페이스(Creator) + 구체 구현체(ConcreteCreator) 분리
+  - Template Method 패턴: `AbstractDrinkRecipe`가 공통 흐름(`produce`) 보유, 구현체는 `drinkType()`과 `defaultEspressoAmount()`만 선언
+  - Registry 패턴: `DrinkRecipeRegistry`가 `DrinkType → DrinkRecipe` 매핑을 단일 진입점으로 관리 — 클라이언트가 구체 클래스명에 의존하지 않아도 되는 구조
+  - Factory vs Registry 구분: 호출 시 새 객체를 만들면 Factory, 등록된 인스턴스를 찾아 반환하면 Registry
+  - 패턴의 구조와 의도 구분: 골격을 구현해도 패턴의 목적(클라이언트 분리)이 실현되지 않으면 절반만 완성된 것
+- **핵심 실수 또는 설계 결함**:
+  - `AmericanoRecipe` / `CafeLatteRecipe` 구현이 상수만 다르고 100% 동일한 구조 — session_06과 동일한 DRY 위반 패턴 반복 (낯선 도메인에서 기존 신호를 인식하지 못함)
+  - `Temperature.ICE` → 도메인 언어 불일치 (`ICED`로 수정)
+  - `CafeLatteRecipeTest`에서 `new AmericanoRecipe()`로 잘못 초기화 — 테스트가 검증 대상 클래스와 무관한 버그
+  - `Drink.createDrink()` — 클래스명 중복 포함 (→ `create()`로 수정)
+  - re-aliasing 상수: `private static final DrinkType AMERICANO = DrinkType.AMERICANO` — 의미 없는 재선언
+  - if문 중괄호 생략, 오류 메시지 오탈자
+- **다음 세션 확장 방향**:
+  - 음료에 사이즈(Size) 옵션 추가 → 조합 폭발 문제 → Abstract Factory 또는 Builder 패턴
