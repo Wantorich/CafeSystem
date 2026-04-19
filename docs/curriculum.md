@@ -49,3 +49,4 @@
 | 07 | 2026-04-15 | 완료 | DIP, Constructor Injection, Test Double(Fake), Package by Feature |
 | 08 | 2026-04-17 | 완료 | Factory Method, Template Method, Registry 패턴, 구조 vs 의도 구분 |
 | 09 | 2026-04-19 | 완료 | Rich Enum, 일급 컬렉션, 불변 설계(생성 시점 확정), 순환 의존 해소 |
+| 10 | 2026-04-19 | 완료 | Observer 패턴, Test Double(Fake), DIP 재적용, 문제 인식 → 패턴 도달 |

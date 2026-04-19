@@ -143,3 +143,19 @@
   - `boolean hasOption` 필드 — `drinkOptions != null`과 동일한 정보를 두 곳에서 표현
 - **다음 세션 확장 방향**:
   - Decorator 패턴 — 음료에 동적으로 옵션을 감싸는 구조, 또는 Builder 패턴으로 복잡한 음료 객체 조립
+
+## 2026-04-19 — 주문 알림 (Observer 패턴)
+
+- **도메인**: OrderNotifier 인터페이스 / KitchenDisplay / PosDisplay / OrderService 확장 / FakeOrderNotifier(Test Double)
+- **적용/발견된 OOP 개념**:
+  - Observer 패턴: `OrderService`(Subject) → `OrderNotifier` 인터페이스(Observer) → `KitchenDisplay`/`PosDisplay`(ConcreteObserver)
+  - 패턴을 몰랐지만 요구사항을 분석해서 동일한 구조에 자연스럽게 도달 — 문제 인식이 패턴 암기보다 중요하다는 것을 체험
+  - DIP 재적용: `OrderService`가 구체 수신자를 모르고 `OrderNotifier` 인터페이스에만 의존
+  - Constructor Injection: 수신자 목록을 생성 시점에 주입, `List.copyOf()`로 방어적 복사
+  - Test Double(Fake): `FakeOrderNotifier`로 알림 전달 여부를 `isNotified()` 상태로 검증
+- **핵심 실수 또는 설계 결함**:
+  - `CardPaymentMethod`, `KakaoPaymentMethod`를 테스트에 직접 사용 — 외부 시스템 의존, assertion 없는 테스트 작성 → `FakePaymentMethod`로 교체
+  - 시나리오 3 테스트에서 불필요한 첫 번째 `processPayment` + `reset()` 호출 — 처음부터 제외된 수신자 없이 서비스 생성으로 단순화 가능
+  - `reset()` 메서드 존재 — 테스트 간 상태 공유를 암시, 새 인스턴스 생성으로 대체
+- **다음 세션 확장 방향**:
+  - Composite 패턴 — 세트 메뉴(단품 + 묶음) 동일 인터페이스로 처리, 또는 전체 도메인 리팩토링
