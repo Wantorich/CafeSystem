@@ -1,4 +1,7 @@
-package com.cafesystem.drink;
+package com.cafesystem.drink.recipe;
+
+import com.cafesystem.drink.Drink;
+import com.cafesystem.drink.Temperature;
 
 public interface DrinkRecipe {
   Drink produce(Temperature temperature);

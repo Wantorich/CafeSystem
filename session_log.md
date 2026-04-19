@@ -124,3 +124,22 @@
   - if문 중괄호 생략, 오류 메시지 오탈자
 - **다음 세션 확장 방향**:
   - 음료에 사이즈(Size) 옵션 추가 → 조합 폭발 문제 → Abstract Factory 또는 Builder 패턴
+
+## 2026-04-19 — 음료 옵션 구성 (Rich Enum + Registry + 불변 설계)
+
+- **도메인**: DrinkSize / DrinkOption / DrinkOptions(일급 컬렉션) / DrinkPriceRegistry / DrinkType(Rich Enum) / DrinkMenu / OrderItem 확장
+- **적용/발견된 OOP 개념**:
+  - Rich Enum: `DrinkType`이 `Category`, `drinkName`, `Map<DrinkSize, Price>` 를 직접 보유 — 음료 타입이 자신의 가격 정보를 선언
+  - Registry 패턴 개선: `DrinkPriceRegistry`가 데이터를 직접 보유하지 않고 `DrinkType`에 위임 — 새 음료 추가 시 Registry 수정 불필요
+  - 일급 컬렉션: `DrinkOptions`가 `Set<DrinkOption>` 래핑, 총 옵션 가격 계산 책임 보유
+  - 불변 객체 설계: `addOptions()` 제거 → 생성 시점에 `Set<DrinkOption>` 수신, `OrderItem` 완전 불변
+  - `Price.add(int)` 오버로드: 0원 추가를 분기 없이 처리 — 도메인 제약(`Price > 0`)을 유지하면서 보일러플레이트 제거
+  - 순환 의존 해소: `Category`를 `common` 패키지로 이동 — `drink ↔ menu` 순환 의존 제거
+- **핵심 실수 또는 설계 결함**:
+  - `OrderItem.addOptions()` 작성 — 불변 제약 위반, 생성 시점 주입으로 수정
+  - `DrinkPriceRegistry` 초기 설계에서 모든 음료 가격을 static 블록에 하드코딩 — OCP 위반, Rich Enum으로 해결
+  - `DrinkOptions.totalOptionPrice` Lazy Initialization + non-final 필드 — 불변 객체에서 side effect 발생, 생성 시 계산으로 수정
+  - `OrderItem.calculateSubTotal()`에서 `Price.of(optionPrice)` 호출 — 옵션 없을 때 0원으로 예외 발생, `add(int)` 오버로드로 해결
+  - `boolean hasOption` 필드 — `drinkOptions != null`과 동일한 정보를 두 곳에서 표현
+- **다음 세션 확장 방향**:
+  - Decorator 패턴 — 음료에 동적으로 옵션을 감싸는 구조, 또는 Builder 패턴으로 복잡한 음료 객체 조립

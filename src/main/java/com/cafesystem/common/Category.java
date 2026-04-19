@@ -1,4 +1,4 @@
-package com.cafesystem.menu;
+package com.cafesystem.common;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

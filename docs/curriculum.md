@@ -47,3 +47,5 @@
 | 05 | 2026-04-13 | 완료 | Strategy 패턴, 인터페이스 추상화, 할인 정책 분리 |
 | 06 | 2026-04-14 | 완료 | Template Method 패턴, final 흐름 고정, 공통 제약 통합 |
 | 07 | 2026-04-15 | 완료 | DIP, Constructor Injection, Test Double(Fake), Package by Feature |
+| 08 | 2026-04-17 | 완료 | Factory Method, Template Method, Registry 패턴, 구조 vs 의도 구분 |
+| 09 | 2026-04-19 | 완료 | Rich Enum, 일급 컬렉션, 불변 설계(생성 시점 확정), 순환 의존 해소 |

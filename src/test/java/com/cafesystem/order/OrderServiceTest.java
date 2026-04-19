@@ -2,14 +2,15 @@ package com.cafesystem.order;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.cafesystem.common.Category;
 import com.cafesystem.common.Price;
 import com.cafesystem.common.Quantity;
 import com.cafesystem.discount.MembershipDiscount;
-import com.cafesystem.menu.Category;
 import com.cafesystem.menu.Menu;
 import com.cafesystem.payment.CardPaymentMethod;
 import com.cafesystem.payment.FakePaymentMethod;
 import com.cafesystem.payment.KakaoPaymentMethod;
+import java.util.Collections;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,7 +21,7 @@ class OrderServiceTest {
   @BeforeEach
   void setUp() {
     Menu americano = Menu.createMenu("아메리카노", Price.of(4500), Category.COFFEE);
-    OrderItem orderItem = OrderItem.createOrderItem(americano, Quantity.of(2));
+    OrderItem orderItem = OrderItem.createOrderItem(americano, Quantity.of(2), Collections.emptySet());
     orderItems = OrderItemList.of(List.of(orderItem));
   }
 

@@ -5,6 +5,8 @@ import static com.cafesystem.drink.Temperature.HOT;
 import static com.cafesystem.drink.Temperature.ICED;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.cafesystem.drink.recipe.DrinkRecipe;
+import com.cafesystem.drink.recipe.DrinkRecipeRegistry;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

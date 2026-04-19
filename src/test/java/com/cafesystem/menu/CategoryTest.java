@@ -2,6 +2,7 @@ package com.cafesystem.menu;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.cafesystem.common.Category;
 import org.junit.jupiter.api.Test;
 
 class CategoryTest {

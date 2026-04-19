@@ -1,4 +1,6 @@
-package com.cafesystem.drink;
+package com.cafesystem.drink.recipe;
+
+import com.cafesystem.drink.DrinkType;
 
 public class CafeLatteRecipe extends AbstractDrinkRecipe {
   private static final int DEFAULT_CAFE_LATTE_ESPRESSO_AMOUNT = 1;

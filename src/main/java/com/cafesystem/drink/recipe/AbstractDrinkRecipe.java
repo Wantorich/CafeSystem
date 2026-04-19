@@ -1,4 +1,8 @@
-package com.cafesystem.drink;
+package com.cafesystem.drink.recipe;
+
+import com.cafesystem.drink.Drink;
+import com.cafesystem.drink.DrinkType;
+import com.cafesystem.drink.Temperature;
 
 public abstract class AbstractDrinkRecipe implements DrinkRecipe {
 

@@ -1,4 +1,6 @@
-package com.cafesystem.drink;
+package com.cafesystem.drink.recipe;
+
+import com.cafesystem.drink.DrinkType;
 
 public class AmericanoRecipe extends AbstractDrinkRecipe {
   private static final int DEFAULT_AMERICANO_ESPRESSO_AMOUNT = 2;

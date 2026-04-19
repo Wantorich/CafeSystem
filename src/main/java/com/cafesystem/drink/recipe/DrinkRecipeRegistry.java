@@ -1,5 +1,6 @@
-package com.cafesystem.drink;
+package com.cafesystem.drink.recipe;
 
+import com.cafesystem.drink.DrinkType;
 import java.util.Map;
 
 public class DrinkRecipeRegistry {
