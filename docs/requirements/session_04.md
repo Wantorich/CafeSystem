@@ -9,24 +9,24 @@
 개발팀은 우선 빠르게 구현하기로 했고, 다음과 같은 코드가 작성되었다.
 
 ```java
-public String getDescription(Menu menu) {
-    if (menu.getCategory().equals("COFFEE")) {
-        return "에스프레소 기반 음료: " + menu.getName();
-    } else if (menu.getCategory().equals("TEA")) {
-        return "차 종류: " + menu.getName();
-    } else if (menu.getCategory().equals("ADE")) {
-        return "에이드 종류: " + menu.getName();
+public String getDescription(Menu singleMenu) {
+    if (singleMenu.getCategory().equals("COFFEE")) {
+        return "에스프레소 기반 음료: " + singleMenu.getName();
+    } else if (singleMenu.getCategory().equals("TEA")) {
+        return "차 종류: " + singleMenu.getName();
+    } else if (singleMenu.getCategory().equals("ADE")) {
+        return "에이드 종류: " + singleMenu.getName();
     } else {
-        return "기타: " + menu.getName();
+        return "기타: " + singleMenu.getName();
     }
 }
 
-public int getPreparationTime(Menu menu) {
-    if (menu.getCategory().equals("COFFEE")) {
+public int getPreparationTime(Menu singleMenu) {
+    if (singleMenu.getCategory().equals("COFFEE")) {
         return 3;
-    } else if (menu.getCategory().equals("TEA")) {
+    } else if (singleMenu.getCategory().equals("TEA")) {
         return 2;
-    } else if (menu.getCategory().equals("ADE")) {
+    } else if (singleMenu.getCategory().equals("ADE")) {
         return 1;
     } else {
         return 5;

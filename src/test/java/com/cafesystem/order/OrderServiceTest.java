@@ -7,7 +7,7 @@ import com.cafesystem.common.Price;
 import com.cafesystem.common.Quantity;
 import com.cafesystem.discount.MembershipDiscount;
 import com.cafesystem.discount.NoDiscount;
-import com.cafesystem.menu.Menu;
+import com.cafesystem.menu.SingleMenu;
 import com.cafesystem.payment.FakePaymentMethod;
 import java.util.Collections;
 import java.util.List;
@@ -19,7 +19,7 @@ class OrderServiceTest {
 
   @BeforeEach
   void setUp() {
-    Menu americano = Menu.createMenu("아메리카노", Price.of(4500), Category.COFFEE);
+    SingleMenu americano = SingleMenu.createMenu("아메리카노", Price.of(4500), Category.COFFEE);
     OrderItem orderItem = OrderItem.createOrderItem(americano, Quantity.of(2), Collections.emptySet());
     orderItems = OrderItemList.of(List.of(orderItem));
   }

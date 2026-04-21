@@ -134,7 +134,7 @@
   - 일급 컬렉션: `DrinkOptions`가 `Set<DrinkOption>` 래핑, 총 옵션 가격 계산 책임 보유
   - 불변 객체 설계: `addOptions()` 제거 → 생성 시점에 `Set<DrinkOption>` 수신, `OrderItem` 완전 불변
   - `Price.add(int)` 오버로드: 0원 추가를 분기 없이 처리 — 도메인 제약(`Price > 0`)을 유지하면서 보일러플레이트 제거
-  - 순환 의존 해소: `Category`를 `common` 패키지로 이동 — `drink ↔ menu` 순환 의존 제거
+  - 순환 의존 해소: `Category`를 `common` 패키지로 이동 — `drink ↔ singleMenu` 순환 의존 제거
 - **핵심 실수 또는 설계 결함**:
   - `OrderItem.addOptions()` 작성 — 불변 제약 위반, 생성 시점 주입으로 수정
   - `DrinkPriceRegistry` 초기 설계에서 모든 음료 가격을 static 블록에 하드코딩 — OCP 위반, Rich Enum으로 해결
@@ -159,3 +159,19 @@
   - `reset()` 메서드 존재 — 테스트 간 상태 공유를 암시, 새 인스턴스 생성으로 대체
 - **다음 세션 확장 방향**:
   - Composite 패턴 — 세트 메뉴(단품 + 묶음) 동일 인터페이스로 처리, 또는 전체 도메인 리팩토링
+
+## 2026-04-22 — 세트 메뉴 구성 (Composite 패턴)
+
+- **도메인**: Menu 인터페이스 / SingleMenu(Leaf) / SetMenu(Composite) — 단품과 세트를 동일 인터페이스로 처리
+- **적용/발견된 OOP 개념**:
+  - Composite 패턴: `Menu` 인터페이스(Component) → `SingleMenu`(Leaf) + `SetMenu`(Composite) 구조
+  - 인터페이스 기반 다형성: 호출 코드가 단품/세트를 구분하지 않고 동일하게 사용
+  - 재귀 구조: `SetMenu`가 `List<Menu>`를 보유 — 세트 안의 세트 자동 처리
+  - 기존 클래스를 인터페이스로 교체 — 의도적인 설계 결정(의존성 역전 방향)
+- **핵심 실수 또는 설계 결함**:
+  - `getCount()`를 `Menu` 인터페이스에 선언 — `SingleMenu`(고정 1)와 `SetMenu`(항목 수)가 다른 개념을 같은 메서드명으로 표현, 요구사항에 없는 계약을 인터페이스에 추가 → 삭제로 수정
+  - FR-02(2건 이상 구성) 검증 누락 — `SetMenu.of()`에 size < 2 가드 추가로 수정
+  - 새로 추가한 테스트에서 size 검증용 `discountAmount`에 `-1` 사용 — 의도와 무관한 값, `0`이 맞음
+  - 파라미터 재할당(`menuList = ...stream().toList()`) — 새 변수(`menus`)로 분리
+- **다음 세션 확장 방향**:
+  - Strategy 패턴 — `discountAmount: int` 를 `DiscountPolicy` 인터페이스로 교체 (고정 금액 외 비율 할인 등 확장)

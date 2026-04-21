@@ -11,12 +11,12 @@ public class DrinkMenu {
 
   private DrinkMenu() {}
 
-  public static Menu create(DrinkType drinkType, DrinkSize drinkSize) {
+  public static SingleMenu create(DrinkType drinkType, DrinkSize drinkSize) {
     Objects.requireNonNull(drinkType, "drinkType is null");
     Objects.requireNonNull(drinkSize, "drinkSize is null");
     String name = drinkType.getDrinkName();
     Category category = drinkType.getCategory();
     Price price = DrinkPriceRegistry.lookupPrice(drinkType, drinkSize);
-    return Menu.createMenu(name, price, category);
+    return SingleMenu.createMenu(name, price, category);
   }
 }
